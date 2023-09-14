@@ -36,12 +36,7 @@ class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", year=" + year +
-                '}';
+        return String.format("Назва: %s. Автор: %s. ISBN: %s. Рік: %d", title, author, isbn, year);
     }
 }
 
@@ -129,7 +124,8 @@ public class Main {
                     String searchTitle = scanner.nextLine();
                     Book foundBook = library.findBookByTitle(searchTitle);
                     if (foundBook != null) {
-                        System.out.println("Знайдена книга за назвою \"" + searchTitle + "\": " + foundBook);
+                        System.out.println("Знайдена книга за назвою \"" + searchTitle + "\":");
+                        System.out.println(foundBook);
                     } else {
                         System.out.println("Книга за назвою \"" + searchTitle + "\" не знайдена.");
                     }

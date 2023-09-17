@@ -1,5 +1,3 @@
-package com.kroll;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -98,7 +96,8 @@ public class Main {
             System.out.println("1. Додати нову книгу в бібліотеку");
             System.out.println("2. Показати всі книги в бібліотеці");
             System.out.println("3. Шукати книгу за назвою");
-            System.out.println("4. Вийти");
+            System.out.println("4. Видалити книгу за номером ISBN");
+            System.out.println("5. Вийти");
 
             int option = scanner.nextInt();
             scanner.nextLine(); // Очистка буфера
@@ -131,6 +130,11 @@ public class Main {
                     }
                     break;
                 case 4:
+                    System.out.print("Введіть номер ISBN книги для видалення: ");
+                    String isbnToRemove = scanner.nextLine();
+                    library.removeBookByIsbn(isbnToRemove);
+                    break;
+                case 5:
                     System.out.println("Програма завершила роботу.");
                     scanner.close();
                     System.exit(0);

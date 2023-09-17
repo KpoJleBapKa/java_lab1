@@ -20,17 +20,11 @@ class Book {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
-    }
 
     public String getIsbn() {
         return isbn;
     }
 
-    public int getYear() {
-        return year;
-    }
 
     @Override
     public String toString() {

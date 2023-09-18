@@ -1,82 +1,6 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+package com.kroll;
+
 import java.util.Scanner;
-
-class Book {
-    private final String title;
-    private final String author;
-    private final String isbn;
-    private final int year;
-
-    public Book(String title, String author, String isbn, int year) {
-        this.title = title;
-        this.author = author;
-        this.isbn = isbn;
-        this.year = year;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-
-    @Override
-    public String toString() {
-        return String.format("Назва: %s. Автор: %s. ISBN: %s. Рік: %d", title, author, isbn, year);
-    }
-}
-
-class Library {
-    private final List<Book> books;
-
-    public Library() {
-        this.books = new ArrayList<>();
-    }
-
-    public void addBook(Book book) {
-        books.add(book);
-        System.out.println("Книгу додано до бібліотеки.");
-    }
-
-    public void displayBooks() {
-        if (books.isEmpty()) {
-            System.out.println("Бібліотека порожня.");
-        } else {
-            System.out.println("Книги в бібліотеці:");
-            for (Book book : books) {
-                System.out.println(book);
-            }
-        }
-    }
-
-    public Book findBookByTitle(String title) {
-        for (Book book : books) {
-            if (book.getTitle().equalsIgnoreCase(title)) {
-                return book;
-            }
-        }
-        return null;
-    }
-
-    public void removeBookByIsbn(String isbn) {
-        Iterator<Book> iterator = books.iterator();
-        while (iterator.hasNext()) {
-            Book book = iterator.next();
-            if (book.getIsbn().equals(isbn)) {
-                iterator.remove();
-                System.out.println("Книгу з ISBN " + isbn + " видалено.");
-                return;
-            }
-        }
-        System.out.println("Книгу з ISBN " + isbn + " не знайдено в бібліотеці.");
-    }
-}
 
 public class Main {
     public static void main(String[] args) {
@@ -94,7 +18,7 @@ public class Main {
             System.out.println("5. Вийти");
 
             int option = scanner.nextInt();
-            scanner.nextLine(); // Очистка буфера
+            scanner.nextLine();
 
             switch (option) {
                 case 1:

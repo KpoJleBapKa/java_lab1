@@ -1,12 +1,16 @@
 package com.kroll;
-
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 public class BookTest {
+    Book book;
+    @BeforeEach
+    void setup() {
+        this.book = new Book("Книга 1", "Автор 1", "ISBN1", 2020);
+    }
     @Test
-    public void testBookConstructor() {
-        Book book = new Book("Книга 1", "Автор 1", "ISBN1", 2020);
+    void testBookConstructor() {
         assertEquals("Книга 1", book.getTitle());
         assertEquals("Автор 1", book.getAuthor());
         assertEquals("ISBN1", book.getIsbn());
@@ -14,7 +18,7 @@ public class BookTest {
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         Book book = new Book("Книга 1", "Автор 1", "ISBN1", 2020);
         String expected = "Назва: Книга 1. Автор: Автор 1. ISBN: ISBN1. Рік: 2020";
         assertEquals(expected, book.toString());

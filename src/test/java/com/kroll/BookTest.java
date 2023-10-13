@@ -1,27 +1,28 @@
 package com.kroll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class BookTest {
-    Book book;
+    private Book book;
+
     @BeforeEach
-    void setup() {
-        this.book = new Book("Книга 1", "Автор 1", "ISBN1", 2020);
-    }
-    @Test
-    void testBookConstructor() {
-        assertEquals("Книга 1", book.getTitle());
-        assertEquals("Автор 1", book.getAuthor());
-        assertEquals("ISBN1", book.getIsbn());
-        assertEquals(2020, book.getYear());
+    public void setUp() {
+        book = new Book("Книга 1", "Автор 1", "ISBN1", 2023);
     }
 
     @Test
-    void testToString() {
-        Book book = new Book("Книга 1", "Автор 1", "ISBN1", 2020);
-        String expected = "Назва: Книга 1. Автор: Автор 1. ISBN: ISBN1. Рік: 2020";
+    public void testBookConstructor() {
+        assertEquals("Книга 1", book.getTitle());
+        assertEquals("Автор 1", book.getAuthor());
+        assertEquals("ISBN1", book.getIdentifier());
+        assertEquals(2023, book.getYear());
+    }
+
+    @Test
+    public void testBookToString() {
+        String expected = "Книга: Книга 1 (Автор: Автор 1, Рік видання: 2023, ISBN: ISBN1)";
         assertEquals(expected, book.toString());
     }
 }
-

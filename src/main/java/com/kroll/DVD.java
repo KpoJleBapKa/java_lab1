@@ -1,19 +1,13 @@
 package com.kroll;
 
-public class DVD {
-    private final String title;
+public class DVD extends Item {
     private final String director;
     private final String releaseYear;
-    private String identifier;
 
-    public DVD(String title, String director, String releaseYear) {
-        this.title = title;
+    public DVD(String title, String director, String releaseYear, String identifier) {
+        super(title, identifier);
         this.director = director;
         this.releaseYear = releaseYear;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public String getDirector() {
@@ -24,16 +18,16 @@ public class DVD {
         return releaseYear;
     }
 
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    @Override
+    public String getType() {
+        return "DVD";
     }
 
     @Override
     public String toString() {
-        return String.format("Назва: %s. Режисер: %s. Рік випуску: %s. Ідентифікатор: %s", title, director, releaseYear, identifier);
+        return getType() + ": " + super.getTitle() + " (Режисер: " + director + ", Рік випуску: " + releaseYear + ", Ідентифікатор: " + super.getIdentifier() + ")";
     }
 }
+
+
+

@@ -1,37 +1,38 @@
 package com.kroll;
 
-
-public class Book {
-    private final String title;
+public class Book extends Item {
     private final String author;
-    private final String isbn;
     private final int year;
+    private final String isbn;
 
     public Book(String title, String author, String isbn, int year) {
-        this.title = title;
+        super(title, isbn);
         this.author = author;
-        this.isbn = isbn;
         this.year = year;
-    }
-
-    public String getTitle() {
-        return title;
+        this.isbn = isbn;
     }
 
     public String getAuthor() {
         return author;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
     public int getYear() {
         return year;
     }
 
+    public String getIsbn() {
+        return isbn;
+    }
+
+    @Override
+    public String getType() {
+        return "Книга";
+    }
+
     @Override
     public String toString() {
-        return String.format("Назва: %s. Автор: %s. ISBN: %s. Рік: %d", title, author, isbn, year);
+        return getType() + ": " + super.getTitle() + " (Автор: " + author + ", Рік видання: " + year + ", ISBN: " + isbn + ")";
     }
 }
+
+

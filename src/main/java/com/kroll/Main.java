@@ -1,6 +1,7 @@
 package com.kroll;
 
 import java.util.Scanner;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,14 +11,14 @@ public class Main {
         while (true) {
             System.out.println("Оберіть опцію:");
             System.out.println("1. Додати нову книгу в бібліотеку");
-            System.out.println("2. Показати всі книги в бібліотеці");
-            System.out.println("3. Шукати книгу за назвою");
-            System.out.println("4. Видалити книгу за номером ISBN");
+            System.out.println("2. Показати всі предмети (книги або DVD) в бібліотеці");
+            System.out.println("3. Шукати предмет (книгу або DVD) за назвою");
+            System.out.println("4. Видалити предмет (книгу або DVD) за ISBN");
             System.out.println("5. Реєструвати читача");
             System.out.println("6. Видавати предмет читачеві");
             System.out.println("7. Повернути предмет в бібліотеку");
-            System.out.println("8. Показувати список доступних книг");
-            System.out.println("9. Показувати список взятих книг та їхніх читачів");
+            System.out.println("8. Показувати список доступних предметів (книги або DVD)");
+            System.out.println("9. Показувати список взятих предметів та їхніх читачів (книги або DVD)");
             System.out.println("10. Додати новий DVD");
             System.out.println("11. Вийти");
 
@@ -40,25 +41,25 @@ public class Main {
                     break;
 
                 case 2:
-                    library.displayBooks();
+                    library.displayItems();
                     break;
 
                 case 3:
-                    System.out.println("Введіть назву книги для пошуку:");
+                    System.out.println("Введіть назву предмету для пошуку:");
                     String searchTitle = scanner.nextLine();
-                    Book foundBook = library.findBookByTitle(searchTitle);
-                    if (foundBook != null) {
-                        System.out.println("Знайдена книга за назвою:");
-                        System.out.println(foundBook);
+                    Item foundItem = library.findItemByTitle(searchTitle);
+                    if (foundItem != null) {
+                        System.out.println("Знайдено предмет за назвою:");
+                        System.out.println(foundItem);
                     } else {
-                        System.out.println("Книгу за заданою назвою не знайдено.");
+                        System.out.println("Предмет за заданою назвою не знайдено.");
                     }
                     break;
 
                 case 4:
-                    System.out.println("Введіть номер ISBN книги для видалення:");
+                    System.out.println("Введіть ISBN предмету для видалення:");
                     String isbnToRemove = scanner.nextLine();
-                    library.removeBookByIsbn(isbnToRemove);
+                    library.removeItemByIsbn(isbnToRemove);
                     break;
 
                 case 5:
@@ -68,47 +69,25 @@ public class Main {
                     break;
 
                 case 6:
-                    System.out.println("Видача предмету читачеві. Оберіть опцію:");
-                    System.out.println("1. Видача книги");
-                    System.out.println("2. Видача DVD");
-                    int issueChoice = scanner.nextInt();
-                    scanner.nextLine(); // Очищення буфера
-                    System.out.println("Введіть ідентифікатор предмету:");
-                    String itemIdentifier = scanner.nextLine();
+                    System.out.println("Видавання предмету читачеві. Введіть ISBN предмету:");
+                    String itemToIssue = scanner.nextLine();
                     System.out.println("Введіть ім'я читача:");
                     String reader = scanner.nextLine();
-                    if (issueChoice == 1) {
-                        library.issueBookToReader(itemIdentifier, reader);
-                    } else if (issueChoice == 2) {
-                        library.issueDVDToReader(itemIdentifier, reader);
-                    } else {
-                        System.out.println("Невірний вибір.");
-                    }
+                    library.issueItemToReader(itemToIssue, reader);
                     break;
 
                 case 7:
-                    System.out.println("Повернення предмету в бібліотеку. Оберіть опцію:");
-                    System.out.println("1. Повернення книги");
-                    System.out.println("2. Повернення DVD");
-                    int returnChoice = scanner.nextInt();
-                    scanner.nextLine(); // Очищення буфера
-                    System.out.println("Введіть ідентифікатор предмету:");
+                    System.out.println("Повернення предмету в бібліотеку. Введіть ISBN предмету:");
                     String itemToReturn = scanner.nextLine();
-                    if (returnChoice == 1) {
-                        library.returnBookToLibrary(itemToReturn);
-                    } else if (returnChoice == 2) {
-                        library.returnDVDToLibrary(itemToReturn);
-                    } else {
-                        System.out.println("Невірний вибір.");
-                    }
+                    library.returnItemToLibrary(itemToReturn);
                     break;
 
                 case 8:
-                    library.displayAvailableBooks();
+                    library.displayAvailableItems();
                     break;
 
                 case 9:
-                    library.displayBorrowedBooks();
+                    library.displayBorrowedItems();
                     break;
 
                 case 10:
@@ -120,8 +99,7 @@ public class Main {
                     String dvdReleaseYear = scanner.nextLine();
                     System.out.println("Введіть ідентифікатор DVD:");
                     String dvdIdentifier = scanner.nextLine();
-                    DVD dvd = new DVD(dvdTitle, dvdDirector, dvdReleaseYear);
-                    dvd.setIdentifier(dvdIdentifier);
+                    DVD dvd = new DVD(dvdTitle, dvdDirector, dvdReleaseYear, dvdIdentifier);
                     library.addDVD(dvd);
                     break;
 
@@ -137,4 +115,3 @@ public class Main {
         }
     }
 }
-
